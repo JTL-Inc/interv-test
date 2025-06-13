@@ -49,19 +49,7 @@ Edit
  * @param {number} eventId - The ID of the event to filter actions for.
  * @returns {number[]} - Sorted list of userIds with valid RSVPs.
  */
-function getCurrentRSVPs(actions, eventId) {
-  const latestActionMap = new Map();
 
-  for (const action of actions) {
-    if (action.eventId !== eventId) continue;
-    latestActionMap.set(action.userId, action.action);
-  }
-
-  return Array.from(latestActionMap.entries())
-    .filter(([_, action]) => action === 'RSVP')
-    .map(([userId]) => userId)
-    .sort((a, b) => a - b);
-}
 ✅ Requirements
 Only the most recent action per user for the given event should count.
 
